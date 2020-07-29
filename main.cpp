@@ -15,7 +15,7 @@
 float angX = 0;
 float angY = 0;
 float angZ = 0;
-int moonAngle = 0;
+float moonAngle = 0;
 int numReflection = 0;
 
 RayTracer raytracer;
@@ -96,7 +96,7 @@ void init(int win_width, int win_height)
 
 void spinMoon(int value)
 {
-  moonAngle = (moonAngle + 1) % 360;
+  moonAngle += 0.1;
 
   glm::vec4 posLight(raytracer.world.lights.begin()->pos, 1.0);
   glm::mat4 model = glm::mat4(0.4f);
@@ -104,7 +104,7 @@ void spinMoon(int value)
   glm::vec3 tvec = glm::vec3(25.0f, 0.0f, 0.0f);
   glm::vec3 axis = glm::vec3(0.0f, 1.0f, 0.0f);
   glm::mat4 translate = glm::translate(model, tvec);
-  glm::mat4 rotate = glm::rotate(model, (GLfloat)moonAngle, axis);
+  glm::mat4 rotate = glm::rotate(model, (GLfloat) moonAngle, axis);
 
   posLight = translate * posLight * rotate;
   Vec aux(posLight.x, posLight.y, posLight.z);
@@ -112,7 +112,7 @@ void spinMoon(int value)
   raytracer.world.objs.front()->pos = aux;
 
   display();
-  glutTimerFunc(500, spinMoon, 0);
+  glutTimerFunc(100, spinMoon, 0);
 }
 
 int main(int argc, char **argv)
