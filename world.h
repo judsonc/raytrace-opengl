@@ -6,20 +6,21 @@
 #include <utils.h>
 #include <object.h>
 
-class World{
+class World
+{
 public:
-  std::list<Object*> objs;
+  std::list<Object *> objs;
   std::list<LightSource> lights;
-  Vec   bgColor;
+  Vec bgColor;
   float lightEnv;
   float ka;
 
-  World() : bgColor(0.0,0.0,0.0), lightEnv(1.0),ka(0.3){}
+  World() : bgColor(0.0, 0.0, 0.0), lightEnv(1.0), ka(0.3) {}
   World(Vec bgColor, float lightEnv);
 
-  void getVeclightEnv(Vec &c)const;
-  Vec getVeclightEnv()const;
-  ~World(); //destruir os ponteiros para Object
+  void getVeclightEnv(Vec &c) const;
+  Vec getVeclightEnv() const;
+  ~World();
 };
 
 #endif
