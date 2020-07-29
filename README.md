@@ -22,14 +22,6 @@ $ make
 $ ./main
 ```
 
-## Comandos para movimentar câmera:
-
-- o: voltar pra origem (0,0,0)
-- x: rotacionar no eixo X
-- y: rotacionar no eixo Y
-- z: rotacionar no eixo Z
-- esc: fechar janela
-
 ### Desenvolvimento
 
 ```sh
