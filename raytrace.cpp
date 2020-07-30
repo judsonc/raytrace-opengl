@@ -80,19 +80,23 @@ Vec RayTracer::trace(const Ray ray, int num_reflection) const
   Vec result_color(0.0);
   Object *obj = NULL;
 
-  //Caso base
-  //calcular o ponto de intersecao mais proximo
+  //Caso base 
+  //Vê se há algum objeto na cena, se não, retorna false
   if (closestPoint(ray, point_intersection, &obj) == false)
+    // caso nao haja obj, retorna cor preta.
     return world.bgColor;
 
   for (auto &lsource : world.lights)
   {
+    // calcula cor
     result_color += shade(ray,
                           lsource,
                           point_intersection,
                           obj,
                           ray_reflected,
                           reflection);
+    // caso objeto tenha reflexao associada a ele e possa-se ter mais reflexões dos raios
+    // chama função recursivamente
     if ((obj->material.kr != 0.0) && reflection && (num_reflection != 0))
     {
       result_color += obj->material.kr * trace(ray_reflected, num_reflection - 1);

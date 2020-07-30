@@ -12,9 +12,6 @@
 #define WIDTH 640
 #define HEIGHT 480
 
-float angX = 0;
-float angY = 0;
-float angZ = 0;
 float moonAngle = 0;
 int numReflection = 0;
 
